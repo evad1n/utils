@@ -1,0 +1,19 @@
+.nav {
+  border-bottom: 1px solid grey;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.navList {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+
+  a {
+    &:hover {
+      opacity: 0.8;
+      color: grey;
+    }
+  }
+}

@@ -20,7 +20,7 @@ function compareFn(a: GroupedLine, b: GroupedLine) {
   return 0;
 }
 
-const sortLinesAlphabetically = ({
+export const sortLinesAlphabetically = ({
   text,
   commentLines = COMMENT_LINES_JS,
 }: Props) => {
@@ -52,7 +52,7 @@ const sortLinesAlphabetically = ({
   }, "");
 };
 
-const input = `
+const testInput = `
   /**
    * @param resetOnSwitchStoreId Whether to reset pagination when the store changes.
    * @default true
@@ -69,9 +69,3 @@ const input = `
    */
   hasPreviousPage?: boolean;
 `;
-
-console.log(
-  sortLinesAlphabetically({
-    text: input,
-  })
-);
