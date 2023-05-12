@@ -10,6 +10,7 @@ const nextConfig = {
   },
   assetPrefix: "/utils",
   basePath: "/utils",
+  output: "export",
 };
 
 module.exports = nextConfig;
