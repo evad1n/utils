@@ -1,19 +1,39 @@
 .nav {
+  margin-bottom: 8px;
+  background-color: rgba(195, 208, 170, 0.735);
   border-bottom: 1px solid grey;
 
   display: flex;
   flex-direction: column;
+  gap: 4px;
+
+  > div:first-of-type {
+    padding: 8px;
+  }
 }
 
 .navList {
   display: flex;
-  gap: 12px;
   list-style: none;
 
+  li {
+    font-size: large;
+  }
+
   a {
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+
+    &:visited {
+      color: rgba(133, 133, 133, 0.612);
+    }
+
     &:hover {
       opacity: 0.8;
-      color: grey;
+      background-color: rgba(236, 246, 200, 0.599);
+
+      transition: all 0.2s ease;
     }
   }
 }

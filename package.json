@@ -7,21 +7,22 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "open": "open http://localhost:3000/utils"
   },
   "dependencies": {
+    "next": "13.4.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-textarea-autosize": "^8.4.1"
+  },
+  "devDependencies": {
     "@types/node": "18.16.2",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
-    "next": "13.3.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-textarea-autosize": "^8.4.1",
+    "sass": "^1.62.1",
     "typescript": "5.0.4"
-  },
-  "devDependencies": {
-    "sass": "^1.62.1"
   }
 }

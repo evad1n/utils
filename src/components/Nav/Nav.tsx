@@ -15,6 +15,9 @@ export const Nav = () => {
           <li>
             <Link href={"/sort-lines"}>Sort Lines</Link>
           </li>
+          <li>
+            <Link href={"/russ-ipsum"}>Russ Ipsum</Link>
+          </li>
         </ul>
       </div>
     </nav>
