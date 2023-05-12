@@ -32,7 +32,7 @@ export class IpsumGenerator {
     return paragraphs;
   }
 
-  private generateParagraph(): string {
+  protected generateParagraph(): string {
     let paragraph = "";
 
     const numSentences = Math.floor(Math.random() * 3) + 3;
@@ -43,7 +43,7 @@ export class IpsumGenerator {
     return paragraph;
   }
 
-  private generateSentence(): string {
+  protected generateSentence(): string {
     let sentence = "";
     let wordIndex = 0;
     let nextToken = this.generateNextToken(true);
@@ -65,7 +65,7 @@ export class IpsumGenerator {
     return sentence;
   }
 
-  private generateNextToken(alwaysWord = false) {
+  protected generateNextToken(alwaysWord = false) {
     if (alwaysWord) {
       return this.generateWord();
     }
@@ -83,16 +83,16 @@ export class IpsumGenerator {
     }
   }
 
-  private generateWord() {
+  protected generateWord() {
     const randIndex = Math.floor(Math.random() * this.words.length);
     return this.words[randIndex];
   }
 
-  private isPunctuation(token: string) {
+  protected isPunctuation(token: string) {
     return this.allPunctuation.includes(token);
   }
 
-  private isSentenceEnding(token: string) {
+  protected isSentenceEnding(token: string) {
     return this.sentenceEndings.includes(token);
   }
 }

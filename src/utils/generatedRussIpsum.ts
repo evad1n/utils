@@ -23,10 +23,25 @@ const russWords = [
   "Golang",
 ];
 
+class RussIpsumGenerator extends IpsumGenerator {
+  constructor() {
+    super({
+      words: russWords,
+    });
+  }
+
+  protected generateParagraph(): string {
+    let paragraph = super.generateParagraph();
+
+    paragraph = paragraph.trim().slice(0, -1);
+    paragraph += ", any questions?";
+
+    return paragraph;
+  }
+}
+
 export const generatedRussIpsum = (numParagraphs: number): string[] => {
-  const generator = new IpsumGenerator({
-    words: russWords,
-  });
+  const generator = new RussIpsumGenerator();
   const paragraphs = generator.generate(numParagraphs);
   return paragraphs;
 };
