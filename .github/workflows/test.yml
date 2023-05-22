@@ -1,9 +1,6 @@
 name: Publish
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
 jobs:
   publish:
@@ -23,16 +20,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8.x
+          run_install: true
 
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build
-        run: |
-          pnpm build
-          touch out/.nojekyll
-
-      - name: Publish
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: out
+      - name: Test
+        run: pnpm tsc
