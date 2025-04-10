@@ -1,6 +1,18 @@
 const DEFAULT_SENTENCE_ENDINGS = [".", "!", "?"];
 const DEFAULT_PUNCTUATION = [",", ";"];
 
+type ConstructorArgs = {
+  words: string[];
+  /**
+   * @default [".", "!", "?"]
+   */
+  sentenceEndings?: string[];
+  /**
+   * @default [",", ";"]
+   */
+  punctuation?: string[];
+};
+
 export class IpsumGenerator {
   words: string[];
   sentenceEndings: string[];
@@ -11,11 +23,7 @@ export class IpsumGenerator {
     words,
     sentenceEndings = DEFAULT_SENTENCE_ENDINGS,
     punctuation = DEFAULT_PUNCTUATION,
-  }: {
-    words: string[];
-    sentenceEndings?: string[];
-    punctuation?: string[];
-  }) {
+  }: ConstructorArgs) {
     this.words = words;
     this.sentenceEndings = sentenceEndings;
     this.punctuation = punctuation;

@@ -1,9 +1,7 @@
 import { useState } from "react";
-import TextareaAutosize from "react-textarea-autosize";
-import { sortLinesAlphabetically } from "src/utils/sortLinesAlphabetically";
 
-import styles from "./index.module.scss";
 import { generatedRussIpsum } from "src/utils/generatedRussIpsum";
+import styles from "./index.module.scss";
 
 export default function Page() {
   const [numParagraphs, setNumParagraphs] = useState(5);

@@ -18,6 +18,9 @@ export const Nav = () => {
           <li>
             <Link href={"/russ-ipsum"}>Russ Ipsum</Link>
           </li>
+          <li>
+            <Link href={"/ipsum-generator"}>Ipsum Generator</Link>
+          </li>
         </ul>
       </div>
     </nav>
