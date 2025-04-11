@@ -1,20 +1,62 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import TextareaAutosize from "react-textarea-autosize";
 
 import styles from "./index.module.scss";
 
+import { useRouter } from "next/router";
 import { IpsumGenerator } from "src/utils/IpsumGenerator";
 
 export default function Page() {
-  const [wordsRaw, setWordsRaw] = useState("");
-  const [numParagraphs, setNumParagraphs] = useState(5);
   const [paragraphs, setParagraphs] = useState<string[]>([]);
 
-  const words = wordsRaw
-    .split("\n")
-    .map(word => word.trim())
-    .filter(word => word.length > 0);
+  const { replace, query } = useRouter();
+
+  const words = typeof query.words === "string" ? query.words.split(",") : [];
+  const numParagraphs =
+    typeof query.numParagraphs === "string"
+      ? parseInt(query.numParagraphs, 10)
+      : 5;
+
+  const handleSetSearchParams = useCallback(
+    (params: URLSearchParams) => {
+      replace(
+        {
+          query: {
+            ...query,
+            ...Object.fromEntries(params.entries()),
+          },
+        },
+        undefined,
+        { shallow: true }
+      );
+    },
+    [query, replace]
+  );
+
+  const wordsRaw = words.join("\n");
+
+  const handleWordsRawChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    const newWords = value.split("\n");
+
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set("words", newWords.join(","));
+
+    handleSetSearchParams(newSearchParams);
+  };
+
+  const handleNumParagraphsChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = e.target.value;
+    const newNumParagraphs = parseInt(value, 10);
+
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set("numParagraphs", newNumParagraphs.toString());
+
+    handleSetSearchParams(newSearchParams);
+  };
 
   const handleGenerate = () => {
     const generator = new IpsumGenerator({
@@ -38,7 +80,7 @@ export default function Page() {
           className={styles.textarea}
           minRows={20}
           value={wordsRaw}
-          onChange={e => setWordsRaw(e.target.value)}
+          onChange={handleWordsRawChange}
         />
       </label>
 
@@ -47,7 +89,7 @@ export default function Page() {
         <input
           type="number"
           value={numParagraphs}
-          onChange={e => setNumParagraphs(parseInt(e.target.value))}
+          onChange={handleNumParagraphsChange}
         />
       </label>
 
