@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -9,6 +9,9 @@ import { IpsumGenerator } from "src/utils/IpsumGenerator";
 
 export default function Page() {
   const [paragraphs, setParagraphs] = useState<string[]>([]);
+  const [cursor, setCursor] = useState<number | null>(null);
+
+  const ref = useRef<HTMLTextAreaElement>(null);
 
   const { replace, query } = useRouter();
 
@@ -36,7 +39,13 @@ export default function Page() {
 
   const wordsRaw = words.join("\n");
 
+  useEffect(() => {
+    ref.current?.setSelectionRange(cursor, cursor);
+  }, [ref, cursor, wordsRaw]);
+
   const handleWordsRawChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCursor(e.target.selectionStart);
+
     const value = e.target.value;
     const newWords = value.split("\n");
 
@@ -75,12 +84,13 @@ export default function Page() {
     <div className={styles.page}>
       <label>
         <p>Words</p>
-        <p>One word per line</p>
+        <p>One word/phrase per line</p>
         <TextareaAutosize
           className={styles.textarea}
           minRows={20}
           value={wordsRaw}
           onChange={handleWordsRawChange}
+          ref={ref}
         />
       </label>
 
