@@ -13,6 +13,9 @@ dependencies:
   react-textarea-autosize:
     specifier: ^8.4.1
     version: 8.4.1(@types/react@18.2.0)(react@18.2.0)
+  typescript:
+    specifier: 5.0.4
+    version: 5.0.4
 
 devDependencies:
   '@types/node':
@@ -33,9 +36,6 @@ devDependencies:
   sass:
     specifier: ^1.62.1
     version: 1.62.1
-  typescript:
-    specifier: 5.0.4
-    version: 5.0.4
 
 packages:
 
@@ -2152,7 +2152,6 @@ packages:
     resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
     engines: {node: '>=12.20'}
     hasBin: true
-    dev: true
 
   /unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
